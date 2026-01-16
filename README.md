@@ -23,7 +23,13 @@ git clone https://github.com/pbl-o/apprepertorio.git
 npm install
 ```
 
-3. Utiliar la Aplicación de la siguiente manera:
+3. Para Levantar el servidor:
+
+```bash
+npm run dev
+```
+
+4. Utiliar la Aplicación de la siguiente manera:
 
    a. Ingresar nombre de artista canción y tonalidad en los campos indicados del formulario. (Se recomiendad indicar tonalidad con clave americana para mayor simplicidad)
 
@@ -40,6 +46,7 @@ npm install
 
   c. Para Eliminar una canción hacer click en el botón "Eliminar" De no haber errores, recibirá un mensaje confirmando su acción en pantalla.
 
-4. Para utilizar el servidor vía postman, thunder-client o similar. Las rutas están indicadas en:  
+
+5. Para interactuar con el servidor vía postman, thunder-client o similar. Las rutas están indicadas en:  
 
 http://localhost:3000/docs (copiar en browser o colocar endpoint)
