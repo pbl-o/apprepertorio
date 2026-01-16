@@ -15,6 +15,10 @@ app.get("/", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "index.html"));
 });
 
+app.get('/docs', (req,res) =>{
+    res.status(200).sendFile(path.join(__dirname, "about-server.html"))
+})
+
 app.get("/canciones", (req, res) => {
   try {
     const canciones = JSON.parse(fs.readFileSync("repertorio.json", "utf-8"));
