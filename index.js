@@ -24,11 +24,9 @@ app.get("/canciones", (req, res) => {
   }
 });
 app.post("/canciones", (req, res) => {
+  try {
     const cancion = req.body;
     const canciones = JSON.parse(fs.readFileSync("repertorio.json", "utf-8"));
- 
-  try {
- 
 
     if (!cancion) {
       res.status(404).send("Tu canción no existe o no ha sido encontrada");
@@ -43,13 +41,11 @@ app.post("/canciones", (req, res) => {
   }
 });
 app.put("/canciones/:id", (req, res) => {
-   const { id } = req.params;
+  try {
+    const { id } = req.params;
     const cancion = req.body;
     const canciones = JSON.parse(fs.readFileSync("repertorio.json", "utf-8"));
     const index = canciones.findIndex((item) => item.id == id);
-  
-  try {
-   
     canciones[index] = cancion;
     fs.writeFileSync("repertorio.json", JSON.stringify(canciones, null, 2));
     res.status(200).json({ message: "Canción modificada con éxito" });
@@ -58,12 +54,11 @@ app.put("/canciones/:id", (req, res) => {
   }
 });
 app.delete("/canciones/:id", (req, res) => {
-   const { id } = req.params;
+  try {
+    const { id } = req.params;
     const canciones = JSON.parse(fs.readFileSync("repertorio.json", "utf-8"));
     const index = canciones.findIndex((item) => item.id == id);
 
-  try {
-   
     canciones.splice(index, 1);
     fs.writeFileSync("repertorio.json", JSON.stringify(canciones, null, 2));
     res.status(200).json({ message: "Canción borrada con éxito" });

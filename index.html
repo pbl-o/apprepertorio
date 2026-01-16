@@ -1,77 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
-</head>
+  <body>
+    <div id="AgregarCancion" class="p-5">
+      <h2 class="pt-3 m-2">&#119070; Mi repertorio &#119070;</h2>
 
-<body>
-  <div id="AgregarCancion">
-    <h2 class="pt-3">&#119070; Mi repertorio &#119070;</h2>
-
-    <div class="container pt-5 w-50">
-      <div>
-        <div class="form-group row">
-          <label for="name" class="col-sm-2 col-form-label">Canción:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="cancion" value="A dios le pido" />
+      <div class="container pt-5 w-50">
+        <div>
+          <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Canción:</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="cancion"
+                value="A dios le pido"
+                placeholder="Ingrese una canción aquí"
+              />
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="email" class="col-sm-2 col-form-label">Artista: </label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="artista" value="Juanes" />
+          <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Artista: </label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="artista"
+                value="Juanes"
+                placeholder="Ingrese un artista aquí"
+              />
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="rut" class="col-sm-2 col-form-label">Tono:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="tono" value="Em" />
+          <div class="form-group row">
+            <label for="rut" class="col-sm-2 col-form-label">Tono:</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="tono"
+                value="Em"
+                placeholder="Ingrese una tonalidad  aquí"
+              />
+            </div>
           </div>
+          <button
+            onclick="nuevaCancion()"
+            id="agregar"
+            class="m-auto btn btn-success"
+          >
+            Agregar
+          </button>
+          <button
+            onclick="editarCancion()"
+            id="editar"
+            class="m-auto btn btn-info"
+          >
+            Editar
+          </button>
         </div>
-        <button onclick="nuevaCancion()" id="agregar" class="m-auto btn btn-success">
-          Agregar
-        </button>
-        <button onclick="editarCancion()" id="editar" class="m-auto btn btn-info">
-          Editar
-        </button>
       </div>
     </div>
-  </div>
-  <div id="ListaCanciones">
-    <hr />
-    <hr />
-    <h2>Tabla de canciones &#127908;</h2>
+    <div id="ListaCanciones">
+      <hr />
+      <hr />
+      <h2>Tabla de canciones &#127908;</h2>
 
-    <div class="container pt-5 w-75">
-      <table class="table table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Canción</th>
-            <th scope="col">Artista</th>
-            <th scope="col">Tono</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="cuerpo"></tbody>
-      </table>
+      <div class="container pt-5 w-100" >
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Canción</th>
+              <th scope="col">Artista</th>
+              <th scope="col">Tono</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpo"></tbody>
+        </table>
+      </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </body>
 </html>
 
 <style>
+  @import url("https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap");
+
   body {
     text-align: center;
-    background: #283593;
+    background: #212a74;
     color: white;
+    font-family: "Kelly Slab", sans-serif;
+    letter-spacing: 1px;
   }
 </style>
 
@@ -89,7 +121,7 @@
     await axios.get(url).then((data) => {
       canciones = data.data;
       tbody.innerHTML = "";
-      console.log(canciones)
+      console.log(canciones);
       canciones.forEach((c, i) => {
         tbody.innerHTML += `
         <tr>
@@ -98,10 +130,12 @@
           <td>${c.artista}</td>
           <td>${c.tono}</td>
           <td>
-            <button class="btn btn-warning" onclick="prepararCancion(${i},'${c.id
-          }')">Editar</button>
-            <button class="btn btn-danger" onclick="eliminarCancion(${i},'${c.id
-          }')">Eliminar</button>
+            <button class="btn btn-warning" onclick="prepararCancion(${i},'${
+          c.id
+        }')">Editar</button>
+            <button class="btn btn-danger" onclick="eliminarCancion(${i},'${
+          c.id
+        }')">Eliminar</button>
           </td>
         </tr>
       `;
@@ -116,7 +150,7 @@
     cancion;
     artista;
     tono;
-    const id = Math.floor(Math.random() * 9999)
+    const id = Math.floor(Math.random() * 9999);
     let data = {
       id,
       titulo: cancion.value,
