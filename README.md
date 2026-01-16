@@ -1,11 +1,11 @@
-# Veterinaria JS
+# Mi repertorio
 
 Servidor con Express que utilice el módulo File
 System para agregar, modificar y eliminar canciones almacenadas en un JSON local (repertorio.json)
 
 ## Tecnologías Empleadas
 
-- Node.js express.js
+- Node.js, express.js
 
 ## Instalación y uso.
 
